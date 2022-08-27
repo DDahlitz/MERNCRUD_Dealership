@@ -24,6 +24,11 @@
   color: white;
 }
 
+.car_card img{
+  max-width: 18rem;
+}
+
+
 .App-link {
   color: #61dafb;
 }
