@@ -47,21 +47,41 @@ function App() {
 	}, []);
 
 	return (
-		<div className='App'>
-			<h1>Dealership</h1>
+		<div className="App">
+		<h1>Car Dealership</h1>
+	    <section>
+		{/* New Form */}
+	    </section>
 
-			<div className='car_card'>
-				{cars.map((car) => {
-					return (
-						<div>
-							<div key={car.id}>
-								<h4>{car.make}</h4>
-							</div>
-						</div>
-					);
-				})}
+
+	    <section className="card-deck" >
+		{ Cars.map((car) => {
+		return(
+		    <div className="car_card">
+			<div className="card" key={car._id}>
+		  	  <img src={car.picture}/>
+		  	  <h3>{car.make}</h3>
+		  	  <p>{car.model}</p>
+			    <p>{car.year}</p>
+			    <p>{car.price}</p>
+			    <p>{car.color}</p>
+			    <p>{car.available}</p>
 			</div>
-		</div>
+
+		  {/* // edit route
+		  
+		  // edit button'
+		  // deletebutton */}
+		    </div>
+  
+  
+  
+
+		    )
+		}
+	    )}
+		</section>
+	  </div>
 	);
 }
 
