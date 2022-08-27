@@ -32,7 +32,9 @@ function App() {
 	const handleMilesChange = (event) => {
 		setNewMiles(event.target.value);
 	};
-
+	const handlePriceChange = (event) => {
+		setNewPrice(event.target.value);
+	};
 	const handleColorChange = (event) => {
 		setNewColor(event.target.value);
 	};
@@ -79,8 +81,15 @@ function App() {
 		<div className='App'>
 			<h1>Car Dealership</h1>
 			<section>
-				<form className="">
-
+				<form className="newForm" onSubmit={handleNewCarFormSubmit}>
+					Img URL: <input type="text" onChange={handlePictureChange}/>
+					Make: <input type="text" onChange={handleMakeChange}/>
+					Model: <input type="text" onChange={handleModelChange}/>
+					Year: <input type="text" onChange={handleYearChange}/>
+					Miles: <input type="text" onChange={handleMilesChange}/>
+					Price: <input type="text" onChange={handlePriceChange}/>
+					Color: <input type="text" onChange={handleColorChange}/>
+					<input type="submit" value="Add New Car"/>
 				</form>
 			</section>
 
