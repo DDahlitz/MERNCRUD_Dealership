@@ -128,45 +128,45 @@ function App() {
 					return (
 						<>
 						<div className='card' key={car._id}>
-							<div className='card-content'></div>
-							<img src={car.picture} />
-							<h3>{car.make}</h3>
-							<p>{car.model}</p>
-							<p>{car.year}</p>
-							<p>{car.price}</p>
-							<p>{car.color}</p>
-							<p>{car.available}</p>
-						</div>
-						
-						<div className='card-edit'>
-						<form className="newForm" onSubmit={() => {handleUpdate(car)}}>
-							Img URL: <input type="text" onChange={handlePictureChange}/>
-							Make: <input type="text" onChange={handleMakeChange}/>
-							Model: <input type="text" onChange={handleModelChange}/>
-							Year: <input type="text" onChange={handleYearChange}/>
-							Miles: <input type="text" onChange={handleMilesChange}/>
-							Price: <input type="text" onChange={handlePriceChange}/>
-							Color: <input type="text" onChange={handleColorChange}/>
-							Available: <input type="checkbox" onChange={handleAvailableChange}/>
-							<input type="submit" onClick={(event) => {handleUpdate(car)}} value="Update Car"/>
-						</form>
-						
-						
-						</div>
-						
-						<div className='card-button'>
-							{/* <button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button> */}
-							<button
-								onClick={(event) => {
-									handleDelete(car);
-								}}
-							>
-								Delete
-							</button>
-							{/* // edit route		  
-							// edit button'
-							// deletebutton */}
-              
+							<div className='card-content'>
+								<img src={car.picture} />
+								<h3>{car.make}</h3>
+								<p>{car.model}</p>
+								<p>{car.year}</p>
+								<p>{car.price}</p>
+								<p>{car.color}</p>
+								<p>{car.available}</p>
+							</div>
+							
+							<div className='card-edit'>
+							<form className="newForm" onSubmit={() => {handleUpdate(car)}}>
+								Img URL: <input type="text" onChange={handlePictureChange}/>
+								Make: <input type="text" onChange={handleMakeChange}/>
+								Model: <input type="text" onChange={handleModelChange}/>
+								Year: <input type="text" onChange={handleYearChange}/>
+								Miles: <input type="text" onChange={handleMilesChange}/>
+								Price: <input type="text" onChange={handlePriceChange}/>
+								Color: <input type="text" onChange={handleColorChange}/>
+								Available: <input type="checkbox" onChange={handleAvailableChange}/>
+								<input type="submit" onClick={(event) => {handleUpdate(car)}} value="Update Car"/>
+							</form>
+							
+							
+							</div>
+							
+							<div className='card-button'>
+								{/* <button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button> */}
+								<button
+									onClick={(event) => {
+										handleDelete(car);
+									}}
+								>
+									Delete
+								</button>
+								{/* // edit route		  
+								// edit button'
+								// deletebutton */}
+							</div>
 						</div>
 						</>
 					);
