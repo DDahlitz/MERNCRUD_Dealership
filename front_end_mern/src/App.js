@@ -14,12 +14,23 @@ function App() {
 	const [newAvailable, setNewAvailable] = useState(false);
 	const [cars, setCars] = useState([]);
 	const [toggleEdit, setToggleEdit] = useState(true);
+	const [showNewForm, setShowNewForm] = useState(false);
+	const [showAllCars, setShowAllCars] = useState(true)
 
 	const cardToggle = () => {
 		{toggleEdit ? setToggleEdit(false) : setToggleEdit(true);}
 	}
-	
 
+
+
+	const newFormsPage = () => {
+		setShowNewForm(true)
+		setShowAllCars(false)
+	}
+	const showCarsPage = () => {
+		setShowNewForm(false)
+		setShowAllCars(true)
+	}
 
 	const handlePictureChange = (event) => {
 		setNewPicture(event.target.value);
@@ -104,6 +115,9 @@ function App() {
 	return (
 		<div className='App'>
 			<h1>Car Dealership</h1>
+			<button onClick={newFormsPage}>Add New Car</button>
+			<button onClick={showCarsPage}> Show Inventory</button>
+			{ showNewForm ? 
 			<section>
 				<form className='newForm' onSubmit={handleNewCarFormSubmit}>
 					Img URL: <input type='text' onChange={handlePictureChange} />
@@ -123,7 +137,8 @@ function App() {
 					<input type='submit' value='Add New Car' />
 				</form>
 			</section>
-
+			: null }
+			{ showAllCars ?
 			<section className='card-deck'>
 				{cars.map((car) => {
 					return (
@@ -192,6 +207,7 @@ function App() {
 					);
 				})}
 			</section>
+			: null }
 		</div>
 	);
 }
