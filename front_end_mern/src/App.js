@@ -64,7 +64,6 @@ function App() {
 			<section className='card-deck'>
 				{cars.map((car) => {
 					return (
-						<div className='car_card'>
 							<div className='card' key={car._id}>
 								<img src={car.picture} />
 								<h3>{car.make}</h3>
@@ -78,9 +77,6 @@ function App() {
 							{/* // edit route		  
 							// edit button'
 							// deletebutton */}
-							
-							
-							</div>
 						</div>
 					);
 				})}
