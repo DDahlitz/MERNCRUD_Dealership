@@ -13,6 +13,11 @@ function App() {
 	const [newColor, setNewColor] = useState("");
 	const [newAvailable, setNewAvailable] = useState(false);
 	const [cars, setCars] = useState([]);
+	const [toggleEdit, setToggleEdit] = useState(true);
+
+	const cardToggle = () => {
+		{toggleEdit ? setToggleEdit(false) : setToggleEdit(true);}
+	}
 	
 
 
@@ -124,6 +129,7 @@ function App() {
 					return (
 						<>
 							<div className='card' key={car._id}>
+								{ toggleEdit ? 
 								<div className='card-content'>
 									<img src={car.picture} />
 									<h3>Make: {car.make}</h3>
@@ -133,7 +139,7 @@ function App() {
 									<p>Color: {car.color}</p>
 									<p>{car.available}</p>
 								</div>
-
+								:  
 								<div className='card-edit'>
 									<form
 										className='updateForm'
@@ -167,9 +173,9 @@ function App() {
 										/>
 									</form>
 								</div>
-
+							}
 								<div className='card-button'>
-									{/* <button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button> */}
+									<button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button>
 									<button
 										onClick={(event) => {
 											handleDelete(car);
