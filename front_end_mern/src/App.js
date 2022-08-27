@@ -13,8 +13,9 @@ function App() {
 	const [newPrice, setNewPrice] = useState("");
 	const [newColor, setNewColor] = useState("");
 	const [newAvailable, setNewAvailable] = useState(false);
-
 	const [cars, setCars] = useState([]);
+	
+
 
 	const handlePictureChange = (event) => {
 		setNewPicture(event.target.value);
@@ -128,6 +129,7 @@ function App() {
 					return (
 						<>
 						<div className='card' key={car._id}>
+
 							<div className='card-content'>
 								<img src={car.picture} />
 								<h3>{car.make}</h3>
@@ -139,7 +141,7 @@ function App() {
 							</div>
 							
 							<div className='card-edit'>
-							<form className="newForm" onSubmit={() => {handleUpdate(car)}}>
+							<form className="updateForm" onSubmit={() => {handleUpdate(car)}}>
 								Img URL: <input type="text" onChange={handlePictureChange}/><br/>
 								Make: <input type="text" onChange={handleMakeChange}/><br/>
 								Model: <input type="text" onChange={handleModelChange}/><br/>
@@ -150,8 +152,6 @@ function App() {
 								Available: <input type="checkbox" onChange={handleAvailableChange}/>
 								<input type="submit" onClick={(event) => {handleUpdate(car)}} value="Update Car"/>
 							</form>
-							
-							
 							</div>
 							
 							<div className='card-button'>
