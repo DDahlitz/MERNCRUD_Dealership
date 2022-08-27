@@ -46,6 +46,25 @@ function App() {
 		});
 	}, []);
 
+	const handleNewCarFormSubmit = (event) => {
+		event.preventDefault();
+		axios
+			.post("http://localhost:3000/dealership", {
+				picture: newPicture,
+				year: newYear,
+				make: newMake,
+				model: newModel,
+				miles: newMiles,
+				price: newPrice,
+				color: newColor,
+				available: newAvailable,
+			})
+			.then(() => {
+				axios.get("http://localhost:3000/animal").then((response) => {
+					setCars(response.data);
+				});
+			});
+	};
 	const handleDelete = (carDelete) => {
 		axios
 			.delete(`http://localhost:3000/dealership/${carDelete._id}`)
@@ -68,19 +87,26 @@ function App() {
 			<section className='card-deck'>
 				{cars.map((car) => {
 					return (
-							<div className='card' key={car._id}>
-								<img src={car.picture} />
-								<h3>{car.make}</h3>
-								<p>{car.model}</p>
-								<p>{car.year}</p>
-								<p>{car.price}</p>
-								<p>{car.color}</p>
-								<p>{car.available}</p>
-							
-							<button>Delete</button>
+						<div className='card' key={car._id}>
+							<img src={car.picture} />
+							<h3>{car.make}</h3>
+							<p>{car.model}</p>
+							<p>{car.year}</p>
+							<p>{car.price}</p>
+							<p>{car.color}</p>
+							<p>{car.available}</p>
+
+							<button
+								onClick={(event) => {
+									handleDelete(car);
+								}}
+							>
+								Delete
+							</button>
 							{/* // edit route		  
 							// edit button'
 							// deletebutton */}
+              
 						</div>
 					);
 				})}
