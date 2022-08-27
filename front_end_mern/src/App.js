@@ -59,7 +59,7 @@ function App() {
 		<div className='App'>
 			<h1>Car Dealership</h1>
 			<section>{/* New Form */}</section>
-
+			<div></div>
 			<section className='card-deck'>
 				{Cars.map((car) => {
 					return (
