@@ -14,7 +14,7 @@ function App() {
 	const [newColor, setNewColor] = useState("");
 	const [newAvailable, setNewAvailable] = useState(false);
 
-	const [cars, setCars] = useState([]);
+	const [Cars, setCars] = useState([]);
 
 	const handlePictureChange = (event) => {
 		setNewPicture(event.target.value);
@@ -46,42 +46,43 @@ function App() {
 		});
 	}, []);
 
+	const handleDelete = (carDelete) => {
+		axios
+			.delete(`http://localhost:3000/dealership/${carDelete._id}`)
+			.then(() => {
+				axios.get("http://localhost:3000/dealership").then((response) => {
+					setCars(response.data);
+				});
+			});
+	};
 	return (
-		<div className="App">
-		<h1>Car Dealership</h1>
-	    <section>
-		{/* New Form */}
-	    </section>
+		<div className='App'>
+			<h1>Car Dealership</h1>
+			<section>{/* New Form */}</section>
 
+			<section className='card-deck'>
+				{Cars.map((car) => {
+					return (
+						<div className='car_card'>
+							<div className='card' key={car._id}>
+								<img src={car.picture} />
+								<h3>{car.make}</h3>
+								<p>{car.model}</p>
+								<p>{car.year}</p>
+								<p>{car.price}</p>
+								<p>{car.color}</p>
+								<p>{car.available}</p>
+							</div>
 
-	    <section className="card-deck" >
-		{ Cars.map((car) => {
-		return(
-		    <div className="car_card">
-			<div className="card" key={car._id}>
-		  	  <img src={car.picture}/>
-		  	  <h3>{car.make}</h3>
-		  	  <p>{car.model}</p>
-			    <p>{car.year}</p>
-			    <p>{car.price}</p>
-			    <p>{car.color}</p>
-			    <p>{car.available}</p>
-			</div>
-
-		  {/* // edit route
+							{/* // edit route
 		  
 		  // edit button'
 		  // deletebutton */}
-		    </div>
-  
-  
-  
-
-		    )
-		}
-	    )}
-		</section>
-	  </div>
+						</div>
+					);
+				})}
+			</section>
+		</div>
 	);
 }
 
