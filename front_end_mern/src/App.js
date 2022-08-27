@@ -79,9 +79,7 @@ function App() {
 
 	const handleUpdate = (carUpdate) => {
 		axios
-		.put(
-			`http://localhost:3000/dealership/${carUpdate._id}`,
-			{
+			.put(`http://localhost:3000/dealership/${carUpdate._id}`, {
 				picture: newPicture,
 				year: newYear,
 				make: newMake,
@@ -90,36 +88,34 @@ function App() {
 				price: newPrice,
 				color: newColor,
 				available: newAvailable,
-			}
-		)
-		.then(()=>{
-			axios
-				.get('http://localhost:3000/dealership')
-				.then((response)=>{
-					setCars(response.data)
-				})
-		})
-  }
-
-
-
-
-
-
+			})
+			.then(() => {
+				axios.get("http://localhost:3000/dealership").then((response) => {
+					setCars(response.data);
+				});
+			});
+	};
 
 	return (
 		<div className='App'>
 			<h1>Car Dealership</h1>
 			<section>
-				<form className="newForm" onSubmit={handleNewCarFormSubmit}>
-					Img URL: <input type="text" onChange={handlePictureChange}/><br/>
-					Make: <input type="text" onChange={handleMakeChange}/><br/>
-					Model: <input type="text" onChange={handleModelChange}/><br/>
-					Year: <input type="text" onChange={handleYearChange}/><br/>
-					Miles: <input type="text" onChange={handleMilesChange}/><br/>
-					Price: <input type="text" onChange={handlePriceChange}/><br/>
-					Color: <input type="text" onChange={handleColorChange}/><br/>
-					<input type="submit" value="Add New Car"/>
+				<form className='newForm' onSubmit={handleNewCarFormSubmit}>
+					Img URL: <input type='text' onChange={handlePictureChange} />
+					<br />
+					Make: <input type='text' onChange={handleMakeChange} />
+					<br />
+					Model: <input type='text' onChange={handleModelChange} />
+					<br />
+					Year: <input type='text' onChange={handleYearChange} />
+					<br />
+					Miles: <input type='text' onChange={handleMilesChange} />
+					<br />
+					Price: <input type='text' onChange={handlePriceChange} />
+					<br />
+					Color: <input type='text' onChange={handleColorChange} />
+					<br />
+					<input type='submit' value='Add New Car' />
 				</form>
 			</section>
 
@@ -127,47 +123,65 @@ function App() {
 				{cars.map((car) => {
 					return (
 						<>
-						<div className='card' key={car._id}>
-							<div className='card-content'>
-								<img src={car.picture} />
-								<h3>{car.make}</h3>
-								<p>{car.model}</p>
-								<p>{car.year}</p>
-								<p>{car.price}</p>
-								<p>{car.color}</p>
-								<p>{car.available}</p>
-							</div>
-							
-							<div className='card-edit'>
-							<form className="newForm" onSubmit={() => {handleUpdate(car)}}>
-								Img URL: <input type="text" onChange={handlePictureChange}/><br/>
-								Make: <input type="text" onChange={handleMakeChange}/><br/>
-								Model: <input type="text" onChange={handleModelChange}/><br/>
-								Year: <input type="text" onChange={handleYearChange}/><br/>
-								Miles: <input type="text" onChange={handleMilesChange}/><br/>
-								Price: <input type="text" onChange={handlePriceChange}/><br/>
-								Color: <input type="text" onChange={handleColorChange}/><br/>
-								Available: <input type="checkbox" onChange={handleAvailableChange}/>
-								<input type="submit" onClick={(event) => {handleUpdate(car)}} value="Update Car"/>
-							</form>
-							
-							
-							</div>
-							
-							<div className='card-button'>
-								{/* <button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button> */}
-								<button
-									onClick={(event) => {
-										handleDelete(car);
-									}}
-								>
-									Delete
-								</button>
-								{/* // edit route		  
+							<div className='card' key={car._id}>
+								<div className='card-content'>
+									<img src={car.picture} />
+									<h3>Make: {car.make}</h3>
+									<p>Model: {car.model}</p>
+									<p>Year: {car.year}</p>
+									<p>Price: {car.price}</p>
+									<p>Color: {car.color}</p>
+									<p>{car.available}</p>
+								</div>
+
+								<div className='card-edit'>
+									<form
+										className='updateForm'
+										onSubmit={() => {
+											handleUpdate(car);
+										}}
+									>
+										Img URL:{" "}
+										<input type='text' onChange={handlePictureChange} />
+										<br />
+										Make: <input type='text' onChange={handleMakeChange} />
+										<br />
+										Model: <input type='text' onChange={handleModelChange} />
+										<br />
+										Year: <input type='text' onChange={handleYearChange} />
+										<br />
+										Miles: <input type='text' onChange={handleMilesChange} />
+										<br />
+										Price: <input type='text' onChange={handlePriceChange} />
+										<br />
+										Color: <input type='text' onChange={handleColorChange} />
+										<br />
+										Available:{" "}
+										<input type='checkbox' onChange={handleAvailableChange} />
+										<input
+											type='submit'
+											onClick={(event) => {
+												handleUpdate(car);
+											}}
+											value='Update Car'
+										/>
+									</form>
+								</div>
+
+								<div className='card-button'>
+									{/* <button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button> */}
+									<button
+										onClick={(event) => {
+											handleDelete(car);
+										}}
+									>
+										Delete
+									</button>
+									{/* // edit route		  
 								// edit button'
 								// deletebutton */}
+								</div>
 							</div>
-						</div>
 						</>
 					);
 				})}
