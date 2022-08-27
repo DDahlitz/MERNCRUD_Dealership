@@ -73,12 +73,14 @@ function App() {
 								<p>{car.price}</p>
 								<p>{car.color}</p>
 								<p>{car.available}</p>
+							
+							<button>Delete</button>
+							{/* // edit route		  
+							// edit button'
+							// deletebutton */}
+							
+							
 							</div>
-
-							{/* // edit route
-		  
-		  // edit button'
-		  // deletebutton */}
 						</div>
 					);
 				})}
