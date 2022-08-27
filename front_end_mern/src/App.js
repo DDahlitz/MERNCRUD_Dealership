@@ -55,7 +55,7 @@ function App() {
 
 
 	    <section className="card-deck" >
-		{ Cars.map((car) => {
+		{cars.map((car) => {
 		return(
 		    <div className="car_card">
 			<div className="card" key={car._id}>
