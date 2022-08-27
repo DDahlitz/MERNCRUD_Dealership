@@ -24,6 +24,10 @@
   color: white;
 }
 
+.card{
+  width: 18rem;
+}
+
 .card img{
   max-width: 18rem;
 }

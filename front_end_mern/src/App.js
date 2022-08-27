@@ -112,13 +112,13 @@ function App() {
 			<h1>Car Dealership</h1>
 			<section>
 				<form className="newForm" onSubmit={handleNewCarFormSubmit}>
-					Img URL: <input type="text" onChange={handlePictureChange}/>
-					Make: <input type="text" onChange={handleMakeChange}/>
-					Model: <input type="text" onChange={handleModelChange}/>
-					Year: <input type="text" onChange={handleYearChange}/>
-					Miles: <input type="text" onChange={handleMilesChange}/>
-					Price: <input type="text" onChange={handlePriceChange}/>
-					Color: <input type="text" onChange={handleColorChange}/>
+					Img URL: <input type="text" onChange={handlePictureChange}/><br/>
+					Make: <input type="text" onChange={handleMakeChange}/><br/>
+					Model: <input type="text" onChange={handleModelChange}/><br/>
+					Year: <input type="text" onChange={handleYearChange}/><br/>
+					Miles: <input type="text" onChange={handleMilesChange}/><br/>
+					Price: <input type="text" onChange={handlePriceChange}/><br/>
+					Color: <input type="text" onChange={handleColorChange}/><br/>
 					<input type="submit" value="Add New Car"/>
 				</form>
 			</section>
@@ -140,13 +140,13 @@ function App() {
 							
 							<div className='card-edit'>
 							<form className="newForm" onSubmit={() => {handleUpdate(car)}}>
-								Img URL: <input type="text" onChange={handlePictureChange}/>
-								Make: <input type="text" onChange={handleMakeChange}/>
-								Model: <input type="text" onChange={handleModelChange}/>
-								Year: <input type="text" onChange={handleYearChange}/>
-								Miles: <input type="text" onChange={handleMilesChange}/>
-								Price: <input type="text" onChange={handlePriceChange}/>
-								Color: <input type="text" onChange={handleColorChange}/>
+								Img URL: <input type="text" onChange={handlePictureChange}/><br/>
+								Make: <input type="text" onChange={handleMakeChange}/><br/>
+								Model: <input type="text" onChange={handleModelChange}/><br/>
+								Year: <input type="text" onChange={handleYearChange}/><br/>
+								Miles: <input type="text" onChange={handleMilesChange}/><br/>
+								Price: <input type="text" onChange={handlePriceChange}/><br/>
+								Color: <input type="text" onChange={handleColorChange}/><br/>
 								Available: <input type="checkbox" onChange={handleAvailableChange}/>
 								<input type="submit" onClick={(event) => {handleUpdate(car)}} value="Update Car"/>
 							</form>
