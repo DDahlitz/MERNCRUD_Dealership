@@ -77,6 +77,36 @@ function App() {
 			});
 	};
 
+	const handleUpdate = (carUpdate) => {
+		axios
+		.put(
+			`http://localhost:3000/dealership/${carUpdate._id}`,
+			{
+				picture: newPicture,
+				year: newYear,
+				make: newMake,
+				model: newModel,
+				miles: newMiles,
+				price: newPrice,
+				color: newColor,
+				available: newAvailable,
+			}
+		)
+		.then(()=>{
+			axios
+				.get('http://localhost:3000/dealership')
+				.then((response)=>{
+					setCars(response.data)
+				})
+		})
+  }
+
+
+
+
+
+
+
 	return (
 		<div className='App'>
 			<h1>Car Dealership</h1>
@@ -96,7 +126,9 @@ function App() {
 			<section className='card-deck'>
 				{cars.map((car) => {
 					return (
+						<>
 						<div className='card' key={car._id}>
+							<div className='card-content'></div>
 							<img src={car.picture} />
 							<h3>{car.make}</h3>
 							<p>{car.model}</p>
@@ -104,7 +136,26 @@ function App() {
 							<p>{car.price}</p>
 							<p>{car.color}</p>
 							<p>{car.available}</p>
-
+						</div>
+						
+						<div className='card-edit'>
+						<form className="newForm" onSubmit={() => {handleUpdate(car)}}>
+							Img URL: <input type="text" onChange={handlePictureChange}/>
+							Make: <input type="text" onChange={handleMakeChange}/>
+							Model: <input type="text" onChange={handleModelChange}/>
+							Year: <input type="text" onChange={handleYearChange}/>
+							Miles: <input type="text" onChange={handleMilesChange}/>
+							Price: <input type="text" onChange={handlePriceChange}/>
+							Color: <input type="text" onChange={handleColorChange}/>
+							Available: <input type="checkbox" onChange={handleAvailableChange}/>
+							<input type="submit" onClick={(event) => {handleUpdate(car)}} value="Update Car"/>
+						</form>
+						
+						
+						</div>
+						
+						<div className='card-button'>
+							{/* <button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button> */}
 							<button
 								onClick={(event) => {
 									handleDelete(car);
@@ -117,6 +168,7 @@ function App() {
 							// deletebutton */}
               
 						</div>
+						</>
 					);
 				})}
 			</section>
