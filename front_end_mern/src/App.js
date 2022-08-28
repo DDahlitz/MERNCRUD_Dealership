@@ -15,22 +15,22 @@ function App() {
 	const [cars, setCars] = useState([]);
 	const [toggleEdit, setToggleEdit] = useState(true);
 	const [showNewForm, setShowNewForm] = useState(false);
-	const [showAllCars, setShowAllCars] = useState(true)
+	const [showAllCars, setShowAllCars] = useState(true);
 
 	const cardToggle = () => {
-		{toggleEdit ? setToggleEdit(false) : setToggleEdit(true);}
-	}
-
-
+		{
+			toggleEdit ? setToggleEdit(false) : setToggleEdit(true);
+		}
+	};
 
 	const newFormsPage = () => {
-		setShowNewForm(true)
-		setShowAllCars(false)
-	}
+		setShowNewForm(true);
+		setShowAllCars(false);
+	};
 	const showCarsPage = () => {
-		setShowNewForm(false)
-		setShowAllCars(true)
-	}
+		setShowNewForm(false);
+		setShowAllCars(true);
+	};
 
 	const handlePictureChange = (event) => {
 		setNewPicture(event.target.value);
@@ -114,100 +114,115 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1>Car Dealership</h1>
-			<button onClick={newFormsPage}>Add New Car</button>
-			<button onClick={showCarsPage}> Show Inventory</button>
-			{ showNewForm ? 
-			<section>
-				<form className='newForm' onSubmit={handleNewCarFormSubmit}>
-					Img URL: <input type='text' onChange={handlePictureChange} />
-					<br />
-					Make: <input type='text' onChange={handleMakeChange} />
-					<br />
-					Model: <input type='text' onChange={handleModelChange} />
-					<br />
-					Year: <input type='text' onChange={handleYearChange} />
-					<br />
-					Miles: <input type='text' onChange={handleMilesChange} />
-					<br />
-					Price: <input type='text' onChange={handlePriceChange} />
-					<br />
-					Color: <input type='text' onChange={handleColorChange} />
-					<br />
-					<input type='submit' value='Add New Car' />
-				</form>
-			</section>
-			: null }
-			{ showAllCars ?
-			<section className='card-deck'>
-				{cars.map((car) => {
-					return (
-						<>
-							<div className='card' key={car._id}>
-								{ toggleEdit ? 
-								<div className='card-content'>
-									<img src={car.picture} />
-									<h3>Make: {car.make}</h3>
-									<p>Model: {car.model}</p>
-									<p>Year: {car.year}</p>
-									<p>Price: {car.price}</p>
-									<p>Color: {car.color}</p>
-									<p>{car.available}</p>
-								</div>
-								:  
-								<div className='card-edit'>
-									<form
-										className='updateForm'
-										onSubmit={() => {
-											handleUpdate(car);
-										}}
-									>
-										Img URL:{" "}
-										<input type='text' onChange={handlePictureChange} />
-										<br />
-										Make: <input type='text' onChange={handleMakeChange} />
-										<br />
-										Model: <input type='text' onChange={handleModelChange} />
-										<br />
-										Year: <input type='text' onChange={handleYearChange} />
-										<br />
-										Miles: <input type='text' onChange={handleMilesChange} />
-										<br />
-										Price: <input type='text' onChange={handlePriceChange} />
-										<br />
-										Color: <input type='text' onChange={handleColorChange} />
-										<br />
-										Available:{" "}
-										<input type='checkbox' onChange={handleAvailableChange} />
-										<input
-											type='submit'
+			<nav>
+				<h1>Car Dealership</h1>
+				<button onClick={newFormsPage}>Add New Car</button>
+				<button onClick={showCarsPage}> Show Inventory</button>
+			</nav>
+			{showNewForm ? (
+				<section>
+					<form className='newForm' onSubmit={handleNewCarFormSubmit}>
+						Img URL: <input type='text' onChange={handlePictureChange} />
+						<br />
+						Make: <input type='text' onChange={handleMakeChange} />
+						<br />
+						Model: <input type='text' onChange={handleModelChange} />
+						<br />
+						Year: <input type='text' onChange={handleYearChange} />
+						<br />
+						Miles: <input type='text' onChange={handleMilesChange} />
+						<br />
+						Price: <input type='text' onChange={handlePriceChange} />
+						<br />
+						Color: <input type='text' onChange={handleColorChange} />
+						<br />
+						<input type='submit' value='Add New Car' />
+					</form>
+				</section>
+			) : null}
+			{showAllCars ? (
+				<section className='card-deck'>
+					{cars.map((car) => {
+						return (
+							<>
+								<div className='card' key={car._id}>
+									{toggleEdit ? (
+										<div className='card-content'>
+											<img src={car.picture} />
+											<h3>Make: {car.make}</h3>
+											<p>Model: {car.model}</p>
+											<p>Year: {car.year}</p>
+											<p>Price: {car.price}</p>
+											<p>Color: {car.color}</p>
+											<p>{car.available}</p>
+										</div>
+									) : (
+										<div className='card-edit'>
+											<form
+												className='updateForm'
+												onSubmit={() => {
+													handleUpdate(car);
+												}}
+											>
+												Img URL:{" "}
+												<input type='text' onChange={handlePictureChange} />
+												<br />
+												Make: <input type='text' onChange={handleMakeChange} />
+												<br />
+												Model:{" "}
+												<input type='text' onChange={handleModelChange} />
+												<br />
+												Year: <input type='text' onChange={handleYearChange} />
+												<br />
+												Miles:{" "}
+												<input type='text' onChange={handleMilesChange} />
+												<br />
+												Price:{" "}
+												<input type='text' onChange={handlePriceChange} />
+												<br />
+												Color:{" "}
+												<input type='text' onChange={handleColorChange} />
+												<br />
+												Available:{" "}
+												<input
+													type='checkbox'
+													onChange={handleAvailableChange}
+												/>
+												<input
+													type='submit'
+													onClick={(event) => {
+														handleUpdate(car);
+													}}
+													value='Update Car'
+												/>
+											</form>
+										</div>
+									)}
+									<div className='card-button'>
+										<button
 											onClick={(event) => {
-												handleUpdate(car);
+												cardToggle(car);
 											}}
-											value='Update Car'
-										/>
-									</form>
-								</div>
-							}
-								<div className='card-button'>
-									<button onClick={(event) =>{cardToggle(car)}}>Edit this Card</button>
-									<button
-										onClick={(event) => {
-											handleDelete(car);
-										}}
-									>
-										Delete
-									</button>
-									{/* // edit route		  
+										>
+											Edit this Card
+										</button>
+										<button
+											onClick={(event) => {
+												handleDelete(car);
+											}}
+										>
+											Delete
+										</button>
+										{/* // edit route		  
 								// edit button'
 								// deletebutton */}
+									</div>
 								</div>
-							</div>
-						</>
-					);
-				})}
-			</section>
-			: null }
+							</>
+						);
+					})}
+				</section>
+			) : null}
 		</div>
 	);
 }

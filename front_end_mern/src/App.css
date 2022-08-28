@@ -23,6 +23,23 @@
 	font-size: calc(10px + 2vmin);
 	color: white;
 }
+
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba rgb(119, 119, 144, 0.6);
+}
+nav h1 {
+	background-color: pink;
+}
+nav button {
+	background-color: rgb(29, 25, 26);
+	padding: 20px;
+	color: aliceblue;
+	font-size: 20px;
+}
+
 .card-deck {
 	display: flex;
 	justify-content: space-between;
